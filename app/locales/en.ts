@@ -1,12 +1,16 @@
+import { getClientConfig } from "../config/client";
 import { SubmitKey } from "../store/config";
 import { LocaleType } from "./index";
 
 // if you are adding a new translation, please use PartialLocaleType instead of LocaleType
+
+const isApp = !!getClientConfig()?.isApp;
 const en: LocaleType = {
   WIP: "Coming Soon...",
   Error: {
-    Unauthorized:
-      "Unauthorized access, please enter access code in [auth](/#/auth) page.",
+    Unauthorized: isApp
+      ? "Invalid API Key, please check it in [Settings](/#/settings) page."
+      : "Unauthorized access, please enter access code in [auth](/#/auth) page, or enter your OpenAI API Key.",
   },
   Auth: {
     Title: "Need Access Code",
@@ -355,7 +359,7 @@ const en: LocaleType = {
     SubTitle: "Chat with the Soul behind the Mask",
     More: "Find More",
     NotShow: "Never Show Again",
-    ConfirmNoShow: "Confirm to disable？You can enable it in settings later.",
+    ConfirmNoShow: "Confirm to disable? You can enable it in settings later.",
   },
 
   UI: {
@@ -373,7 +377,7 @@ const en: LocaleType = {
   },
 
   URLCommand: {
-    Code: "Detected access code from url, confirm to apply? ",
+    Code: "Detected access code from url, confirm to apply?",
     Settings: "Detected settings from url, confirm to apply?",
   },
 };
