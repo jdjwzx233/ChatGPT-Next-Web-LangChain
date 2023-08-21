@@ -19,6 +19,7 @@ import { SerpAPI } from "langchain/tools";
 import { Calculator } from "langchain/tools/calculator";
 import { DuckDuckGo } from "@/app/api/langchain-tools/duckduckgo_search";
 import { HttpGetTool } from "@/app/api/langchain-tools/http_get";
+import { ACCESS_CODE_PREFIX } from "@/app/constant";
 
 const serverConfig = getServerSideConfig();
 
@@ -35,6 +36,8 @@ interface RequestBody {
   presence_penalty?: number;
   frequency_penalty?: number;
   top_p?: number;
+  baseUrl?: string;
+  apiKey?: string;
   maxIterations: number;
   returnIntermediateSteps: boolean;
 }
@@ -66,6 +69,13 @@ async function handle(req: NextRequest) {
     const transformStream = new TransformStream();
     const writer = transformStream.writable.getWriter();
     const reqBody: RequestBody = await req.json();
+    const authToken = req.headers.get("Authorization") ?? "";
+    const token = authToken.trim().replaceAll("Bearer ", "").trim();
+    const isOpenAiKey = !token.startsWith(ACCESS_CODE_PREFIX);
+    let apiKey = serverConfig.apiKey;
+    if (isOpenAiKey && token) {
+      apiKey = token;
+    }
 
     const handler = BaseCallbackHandler.fromMethods({
       async handleLLMNewToken(token: string) {
@@ -194,15 +204,29 @@ async function handle(req: NextRequest) {
       outputKey: "output",
       chatHistory: new ChatMessageHistory(pastMessages),
     });
-    const llm = new ChatOpenAI({
-      modelName: reqBody.model,
-      openAIApiKey: serverConfig.apiKey,
-      temperature: reqBody.temperature,
-      streaming: reqBody.stream,
-      topP: reqBody.top_p,
-      presencePenalty: reqBody.presence_penalty,
-      frequencyPenalty: reqBody.frequency_penalty,
-    });
+    // support base url
+    let baseUrl = "https://api.openai.com/v1";
+    if (serverConfig.baseUrl) baseUrl = serverConfig.baseUrl;
+    if (
+      reqBody.baseUrl?.startsWith("http://") ||
+      reqBody.baseUrl?.startsWith("https://")
+    )
+      baseUrl = reqBody.baseUrl;
+    if (!baseUrl.endsWith("/v1"))
+      baseUrl = baseUrl.endsWith("/") ? `${baseUrl}v1` : `${baseUrl}/v1`;
+    console.log("[baseUrl]", baseUrl);
+    const llm = new ChatOpenAI(
+      {
+        modelName: reqBody.model,
+        openAIApiKey: apiKey,
+        temperature: reqBody.temperature,
+        streaming: reqBody.stream,
+        topP: reqBody.top_p,
+        presencePenalty: reqBody.presence_penalty,
+        frequencyPenalty: reqBody.frequency_penalty,
+      },
+      { basePath: baseUrl },
+    );
     const executor = await initializeAgentExecutorWithOptions(tools, llm, {
       agentType: "openai-functions",
       returnIntermediateSteps: reqBody.returnIntermediateSteps,
