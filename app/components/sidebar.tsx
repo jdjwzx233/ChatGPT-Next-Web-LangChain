@@ -121,7 +121,7 @@ export function SideBar(props: { className?: string }) {
           ChatGPT Next Web
         </div>
         <div className={styles["sidebar-sub-title"]}>
-          支持网络搜索和其他插件，使用时请先切换到gpt-3.5-turbo-16k-0613或gpt-3.5-turbo-0613模型
+          支持网络搜索和其他插件，切换到16K的模型可以获得更好的搜索和使用体验(高成本，慎用)
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
