@@ -43,6 +43,9 @@
   
   - 网络请求
     - [WebBrowser](https://js.langchain.com/docs/api/tools_webbrowser/classes/WebBrowser)
+   
+  - 其它
+    - [Wiki](https://js.langchain.com/docs/api/tools/classes/WikipediaQueryRun)
   
 
 
@@ -56,8 +59,8 @@
 
   优先级：`SerpAPI > BingSerpAPI > DuckDuckGo`
 
-- [ ] 插件列表页面开发
-- [ ] 支持开关指定插件
+- [x] 插件列表页面开发
+- [x] 支持开关指定插件
 - [ ] 支持添加自定义插件
 - [x] 支持 Agent 参数配置（ ~~agentType~~, maxIterations, returnIntermediateSteps 等）
 - [x] 支持 ChatSession 级别插件功能开关
@@ -79,6 +82,7 @@
 
 ## 最新动态
 
+- 🚀 v2.9.5 正式版本发布
 - 🚀 v2.9.1-plugin-preview 预览版发布。
 
 ## 开始使用
