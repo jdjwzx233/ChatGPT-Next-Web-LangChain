@@ -10,7 +10,7 @@
 [![MacOS][MacOS-image]][download-url]
 [![Linux][Linux-image]][download-url]
 
-[网页版](https://chat-gpt-next-web-gosuto.vercel.app/) / [客户端](https://github.com/Hk-Gosuto/ChatGPT-Next-Web-LangChain/releases) / [反馈](https://github.com/Hk-Gosuto/ChatGPT-Next-Web-LangChain/issues)
+[网页版](https://chat-gpt-next-web-gosuto.vercel.app/) / ~~[客户端](https://github.com/Hk-Gosuto/ChatGPT-Next-Web-LangChain/releases)~~ / [反馈](https://github.com/Hk-Gosuto/ChatGPT-Next-Web-LangChain/issues)
 
 [web-url]: https://chat-gpt-next-web-gosuto.vercel.app/
 [download-url]: https://github.com/Hk-Gosuto/ChatGPT-Next-Web-LangChain/releases
@@ -25,6 +25,10 @@
 
 ![plugin-example](./docs/images/plugin-example.png)
 
+![wiki-plugin](./docs/images/wiki-plugin-example.png)
+
+![dall-e-plugin](./docs/images/dalle-plugin-example.png)
+
 ![cover](./docs/images/cover.png)
 
 </div>
@@ -37,15 +41,18 @@
     - [SerpAPI](https://js.langchain.com/docs/api/tools/classes/SerpAPI)
     - [BingSerpAPI](https://js.langchain.com/docs/api/tools/classes/BingSerpAPI)
     - DuckDuckGo
-  
   - 计算
     - [Calculator](https://js.langchain.com/docs/api/tools_calculator/classes/Calculator)
-  
   - 网络请求
     - [WebBrowser](https://js.langchain.com/docs/api/tools_webbrowser/classes/WebBrowser)
-   
   - 其它
     - [Wiki](https://js.langchain.com/docs/api/tools/classes/WikipediaQueryRun)
+    - DALL-E
+      - DALL-E 插件需要配置 R2 存储，请参考 [Cloudflare R2 服务配置指南](./docs/cloudflare-r2-cn.md) 配置
+    - StableDiffusion
+      - 本插件目前为测试版本，后续可能会有较大的变更，请谨慎使用
+      - 使用本插件需要一定的专业知识，Stable Diffusion 本身的相关问题不在本项目的解答范围内，如果您确定要使用本插件请参考 [Stable Diffusion 插件配置指南](./docs/stable-diffusion-plugin-cn.md) 文档进行配置
+      - StableDiffusion 插件需要配置 R2 存储，请参考 [Cloudflare R2 服务配置指南](./docs/cloudflare-r2-cn.md) 配置
   
 
 
@@ -82,6 +89,7 @@
 
 ## 最新动态
 
+- 🚀 v2.9.6 版本发布
 - 🚀 v2.9.5 正式版本发布
 - 🚀 v2.9.1-plugin-preview 预览版发布。
 
@@ -98,6 +106,8 @@
 [简体中文 > 常见问题](./docs/faq-cn.md)
 
 [English > FAQ](./docs/faq-en.md)
+
+[Azure OpenAI](./docs/azure-openai-cn.md)
 
 ## 配置页面访问密码
 
@@ -128,6 +138,15 @@ OpanAI 密钥，你在 openai 账户页面申请的 api key。
 ### `BING_SEARCH_API_KEY` (可选)
 
 [Web Search API | Microsoft Bing](https://www.microsoft.com/en-us/bing/apis/bing-web-search-api)
+
+### `CHOOSE_SEARCH_ENGINE` (可选)
+
+此项为直连搜索引擎，免去api试用量小的烦恼，但可能因为网络问题导致无法使用
+
+可选项如下：
+
+- google
+- baidu
 
 ### `CODE` （可选）
 
@@ -161,6 +180,21 @@ OpenAI 接口代理 URL，如果你手动配置了 openai 接口代理，请填�
 
 如果你不想让用户查询余额，将此环境变量设置为 1 即可。
 
+### `R2_ACCOUNT_ID` （可选）
+
+Cloudflare R2 帐户 ID，使用 `DALL-E` 插件时需要配置。
+
+### `R2_ACCESS_KEY_ID` （可选）
+
+Cloudflare R2 访问密钥 ID，使用 `DALL-E` 插件时需要配置。
+
+### `R2_SECRET_ACCESS_KEY` （可选）
+
+Cloudflare R2 机密访问密钥，使用 `DALL-E` 插件时需要配置。
+### `R2_BUCKET` （可选）
+
+Cloudflare R2 Bucket 名称，使用 `DALL-E` 插件时需要配置。
+
 ## 部署
 
 ### 容器部署 （推荐）
@@ -170,8 +204,6 @@ OpenAI 接口代理 URL，如果你手动配置了 openai 接口代理，请填�
 > ⚠️ 注意：docker 版本在大多数时间都会落后最新的版本 1 到 2 天，所以部署后会持续出现“存在更新”的提示，属于正常现象。
 
 ```shell
-docker pull gosuto/chatgpt-next-web-langchain
-
 docker run -d -p 3000:3000 \
    -e OPENAI_API_KEY="sk-xxxx" \
    -e CODE="页面访问密码" \
@@ -196,6 +228,17 @@ docker run -d -p 3000:3000 \
 ```
 
 如果你需要指定其他环境变量，请自行在上述命令中增加 `-e 环境变量=环境变量值` 来指定。
+
+## 同步聊天记录（UpStash）
+
+| [简体中文](./docs/synchronise-chat-logs-cn.md) | [English](./docs/synchronise-chat-logs-en.md) | [Italiano](./docs/synchronise-chat-logs-es.md) | [日本語](./docs/synchronise-chat-logs-ja.md) | [한국어](./docs/synchronise-chat-logs-ko.md)
+
+
+## 贡献者
+
+<a href="https://github.com/Hk-Gosuto/ChatGPT-Next-Web-LangChain/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Hk-Gosuto/ChatGPT-Next-Web-LangChain" />
+</a>
 
 ## 截图
 
