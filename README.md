@@ -47,14 +47,13 @@
     - [WebBrowser](https://js.langchain.com/docs/api/tools_webbrowser/classes/WebBrowser)
   - 其它
     - [Wiki](https://js.langchain.com/docs/api/tools/classes/WikipediaQueryRun)
-    - DALL-E
-      - DALL-E 插件需要配置 R2 存储，请参考 [Cloudflare R2 服务配置指南](./docs/cloudflare-r2-cn.md) 配置
+    - DALL-E 3
+      - DALL-E 3 插件需要配置 R2 存储，请参考 [Cloudflare R2 服务配置指南](./docs/cloudflare-r2-cn.md) 配置
     - StableDiffusion
       - 本插件目前为测试版本，后续可能会有较大的变更，请谨慎使用
       - 使用本插件需要一定的专业知识，Stable Diffusion 本身的相关问题不在本项目的解答范围内，如果您确定要使用本插件请参考 [Stable Diffusion 插件配置指南](./docs/stable-diffusion-plugin-cn.md) 文档进行配置
       - StableDiffusion 插件需要配置 R2 存储，请参考 [Cloudflare R2 服务配置指南](./docs/cloudflare-r2-cn.md) 配置
-  
-
+    - Arxiv
 
 ## 开发计划
 
@@ -89,7 +88,6 @@
 
 ## 最新动态
 
-- 🚀 v2.9.6 版本发布
 - 🚀 v2.9.5 正式版本发布
 - 🚀 v2.9.1-plugin-preview 预览版发布。
 
@@ -191,6 +189,7 @@ Cloudflare R2 访问密钥 ID，使用 `DALL-E` 插件时需要配置。
 ### `R2_SECRET_ACCESS_KEY` （可选）
 
 Cloudflare R2 机密访问密钥，使用 `DALL-E` 插件时需要配置。
+
 ### `R2_BUCKET` （可选）
 
 Cloudflare R2 Bucket 名称，使用 `DALL-E` 插件时需要配置。
@@ -249,6 +248,12 @@ docker run -d -p 3000:3000 \
 ## 捐赠
 
 [请项目原作者喝杯咖啡](https://www.buymeacoffee.com/yidadaa)
+
+## 感谢
+
+<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo." height='120'>
+
+感谢 [jetbrains](https://www.jetbrains.com/) 为本项目提供的 [开源许可证](https://www.jetbrains.com/community/opensource/)
 
 ## 开源协议
 
