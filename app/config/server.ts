@@ -54,8 +54,6 @@ export const getServerSideConfig = () => {
     );
   }
 
-  const apiKeys = (process.env.OPENAI_API_KEY ?? '').split(',')
-  const apiKey = apiKeys.at(Math.floor(Math.random() * apiKeys.length)) ?? ''
   const disableGPT4 = !!process.env.DISABLE_GPT4;
   let customModels = process.env.CUSTOM_MODELS ?? "";
 
