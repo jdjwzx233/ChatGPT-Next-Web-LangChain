@@ -54,6 +54,8 @@ export const getServerSideConfig = () => {
     );
   }
 
+  const apiKeys = (process.env.OPENAI_API_KEY ?? '').split(',')
+  const apiKey = apiKeys.at(Math.floor(Math.random() * apiKeys.length)) ?? ''
   const disableGPT4 = !!process.env.DISABLE_GPT4;
   let customModels = process.env.CUSTOM_MODELS ?? "";
 
@@ -90,6 +92,7 @@ export const getServerSideConfig = () => {
     googleBaseUrl: process.env.GOOGLE_BASE_URL,
 
     needCode: ACCESS_CODES.size > 0,
+
     code: process.env.CODE,
     codes: ACCESS_CODES,
 
