@@ -174,10 +174,10 @@ export function SideBar(props: { className?: string }) {
     >
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
         <div className={styles["sidebar-title"]} data-tauri-drag-region>
-          ChatGPT Next Web
+          Next Chat(jdjwzx233 Cloud)
         </div>
         <div className={styles["sidebar-sub-title"]}>
-          支持网络搜索和其他插件，切换到16K的模型可以获得更好的搜索和使用体验(高成本，慎用)
+          免费提供Google Gemini AI服务，支持全模型，不限量使用（省着点用站长家里没矿）。插件暂时不支持使用，所有和插件有关的功能都是无效的，不要去尝试了。如果遇到问题可以联系me@jdjwzx233.cn 获取使用密钥也可以联系上面的邮箱。你也可以自行填入API密钥使用。
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
