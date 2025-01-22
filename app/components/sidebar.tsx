@@ -177,7 +177,7 @@ export function SideBar(props: { className?: string }) {
           Next Chat(jdjwzx233 Cloud)
         </div>
         <div className={styles["sidebar-sub-title"]}>
-          免费提供Google Gemini AI服务，支持全模型，不限量使用（省着点用站长家里没矿）。插件暂时不支持使用，所有和插件有关的功能都是无效的，不要去尝试了。如果遇到问题可以联系me@jdjwzx233.cn 获取使用密钥也可以联系上面的邮箱。你也可以自行填入API密钥使用。
+          免费提供Google Gemini AI服务，支持全模型，不限量使用（省着点用，站长家里没矿，如果某个模型的API额度调用完了，自行切换模型，推荐gemini-2.0-flash-exp和gemini-1.5-pro-latest（每个模型每日都有一定额度，每分钟也有调用次数限制，建议避开高峰期使用））。插件暂时不支持使用。如果遇到问题可以联系me@jdjwzx233.cn 获取使用密钥也可以联系上面的邮箱。你也可以自行填入API密钥使用。
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
