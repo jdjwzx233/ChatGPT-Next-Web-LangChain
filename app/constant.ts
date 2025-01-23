@@ -355,8 +355,7 @@ const openaiModels = [
 ];
 
 const googleModels = [
-"gemini-exp-1121",
-    "gemini-exp-1206"
+
 ];
 
 const anthropicModels = [
