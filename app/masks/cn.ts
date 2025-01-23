@@ -75,7 +75,6 @@ export const CN_MASKS: BuiltinMask[] = [
       "syncGlobalConfig": false,
       "modelConfig": {
         "model": "gemini-1.5-pro",
-        "providerName": "gemini-1.5-pro",
         "temperature": 0.5,
         "top_p": 1,
         "max_tokens": 40000,
