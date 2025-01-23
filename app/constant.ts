@@ -317,11 +317,11 @@ const openaiModels = [
 ];
 
 const googleModels = [
-  "gemini-1.0-pro",
-  "gemini-1.5-pro-latest",
-  "gemini-1.5-flash-latest",
-  "gemini-pro-vision",
-  "gemini-exp-1114",
+  "gemini-1.0-pro-google",
+  "gemini-1.5-pro-latest-google",
+  "gemini-1.5-flash-latest-google",
+  "gemini-pro-vision-google",
+  "gemini-exp-1114-google",
 ];
 
 const anthropicModels = [
